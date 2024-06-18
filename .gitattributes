@@ -1,0 +1,16 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+*.vi binary
+*.vim binary
+*.lvproj binary
+*.lvclass binary
+*.lvlps binary
+*.aliases binary
+*.lvlib binary
+*.vit binary
+*.ctl binary
+*.ctt binary
+*.xnode binary
+*.xcontrol binary
+*.rtm binary
