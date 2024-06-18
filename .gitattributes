@@ -14,3 +14,10 @@
 *.xnode binary
 *.xcontrol binary
 *.rtm binary
+
+*.vi linguist-language=LabVIEW
+*.vim linguist-language=LabVIEW
+*.lvclass linguist-language=LabVIEW
+*.ctl linguist-language=LabVIEW
+*.xctl linguist-language=LabVIEW
+*.xnode linguist-language=LabVIEW
