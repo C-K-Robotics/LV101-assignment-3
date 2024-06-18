@@ -78,7 +78,7 @@ _Note that since we are working with a **discrete** error function we need to us
 
 For this exercise, we'll be writing a PID controller to do a position control on an single-jointed arm plant. There is some [starter code](https://github.com/C-K-Robotics/LV101-assignment-3/blob/main/PID%20Controller.vi), but you'll be implementing the things you've learned above yourself. You have full freedom to change anything in the `PID Controller.vi` section. Of course, you can add indicators as you'd like to test out your values, and execute the `main.vi` to test out your controller.
 You can only modify the following VIs:
-- `PID Controller.vi`
+- `PID Controller.vi` (No modification need. But feel free to add indicators if you want to check the values, or try the LabVIEW Probe Tool)
 - `Proportional Cal.vi`
 - `Integration Cal.vi`
 - `Derivative Cal.vi`
