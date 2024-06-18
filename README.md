@@ -57,9 +57,12 @@ _Note that since we are working with a *discrete* error function we need to use 
 
 ### Derivative
 
-The final aspect of PID Algorithm is derivative term. The output here is based upon the derivative (rate against time) of error. Lets consider an example where the PID controller has a set of gains {0, 0, 0.124}.
+The final aspect of PID Algorithm is derivative term. The output here is based upon the derivative (rate against time) of error. 
+- $K_d$ , known as the derivative gain.
+- $D$ , known as the derivative term of the PID controller.
 
-Let's look at the same error vs time graph from before, except this time we are at 2.6 seconds.
+Let's consider an example where the PID controller has a set of gains {0, 0, 0.124}.
+Here's the same error vs time graph from before, except this time we are at 2.6 seconds.
 
 ![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/615a747e-fca8-45cc-a962-afec7a720f13)
 
@@ -73,20 +76,32 @@ _Note that since we are working with a **discrete** error function we need to us
 
 # Exercise #1
 
-For this exercise, we'll be writing a PID vi. There is some [starter code](), but you'll be implementing the things you've learned above yourself. You have full freedom to change anything in the PID vi section. Of course, you can add indicators as you'd like, and modify the debug flag in main. We have a set of [known correct outputs](pidCorrectOutputs.md), which is helpful for debugging, but know that differences from these do not necessarily mean that you are incorrect. 
+For this exercise, we'll be writing a PID controller to do a position control on an single-jointed arm plant. There is some [starter code](https://github.com/C-K-Robotics/LV101-assignment-3/blob/main/PID%20Controller.vi), but you'll be implementing the things you've learned above yourself. You have full freedom to change anything in the `PID Controller.vi` section. Of course, you can add indicators as you'd like to test out your values, and execute the `main.vi` to test out your controller.
+You can only modify the following VIs:
+- `PID Controller.vi`
+- `Proportional Cal.vi`
+- `Integration Cal.vi`
+- `Derivative Cal.vi`
 
 ### Integral Calculation
 
-If you've taken calc, you probably know about Riemann (Ree-mon) sums. Riemann sums are how we calculate integrals in code. While data in the real world is fluid, code is not, code, however, can get pretty close if the time interval is small enough. What we get from this is a series of points that describe the curve.
+If you've taken calculus, you probably know about Riemann sums. Riemann sums are how we calculate integrals in code. While data in the real world is continuous, code is not. Code, however, can get pretty close if the time interval is small enough. What we get from this is a series of points that describe the curve.
 
-![](assets/week3_3.png)
+![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/031d4c13-e7f8-43fe-9ce8-56ad5f9dfb6d)
 
 Imagine this is a graph of error. What we are showing here is a Right-Hand Riemann sum. This is how we recommend you implement integral calculations (as its pretty simple), but you can do it in other ways. You can experiment with this data set here: [Rieman Sum Simulator](https://www.desmos.com/calculator/kye17rgo1b)
 
 ### Derivative Calculations
 
-The way we do derivatives is also the same way we do derivative in calc. A derivative is the slope between two points, where the dt is a limit to infinity. In our case, with code, the dt is simply as fast as we get data, which gets us pretty close. If you'd like to experiment with how the dt changes the results, I have another desmos sim here: [Derivatives Approximation](https://www.desmos.com/calculator/yhwf0jrps8). It uses the same data as the integral sim.
+The way we do derivatives is also the same way we do derivative in calculus. A derivative is the slope between two points, where the dt is a limit to infinity. In our case, with code, the dt is simply as fast as we get data, which gets us pretty close. If you'd like to experiment with how the dt changes the results, I have another desmos sim here: [Derivatives Approximation](https://www.desmos.com/calculator/yhwf0jrps8). It uses the same data as the integral sim.
 
-![](assets/week3_4.png)
+![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/d9c38ef6-93e9-44b9-8c44-de20651e296f)
 
 Between each data point, you see the yellow slope line and the two blue component lines. for PID, we consider the dE at each point as the slope of the line leading to it. The dE at the green marked point would be the slope between the two marked points.
+
+# Submission
+Eventually, you should get a plot in `main.vi` like this. Make sure you don't change any parameter of the controller, including PID gains, dt, Output range, Setpoint, etc.
+If you get the exact same plot, you're good to go and submit the assignment! (do a `git push`)
+
+![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/af1a2a64-b69d-4059-978e-9c725e57aa59)
+
