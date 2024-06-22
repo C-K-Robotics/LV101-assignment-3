@@ -2,7 +2,7 @@
 # Closed-Loop (Feedback) Control
 A closed-loop controller or feedback controller is a control loop which incorporates feedback, in contrast to an open-loop controller or non-feedback controller. A closed-loop controller uses feedback to control states or outputs of a dynamical system.
 
-![Alt text](assets\Closed_Loop_Block_Diagram.png)
+![Alt text](assets/Closed_Loop_Block_Diagram.png)
 - Control action from the controller is dependent on the process (plant) output
 - Has a feedback loop which ensures the controller exerts a control action to give a process output the same as the "reference input" or "set point”
 # PID Control
@@ -99,7 +99,7 @@ The way we do derivatives is also the same way we do derivative in calculus. A d
 Between each data point, you see the yellow slope line and the two blue component lines. for PID, we consider the dE at each point as the slope of the line leading to it. The dE at the green marked point would be the slope between the two marked points.
 
 # Exercise #2
-![Alt text](assets\2nd_Order_System_Response.png)
+![Alt text](assets/2nd_Order_System_Response.png)
 
 In the exercise, the closed-loop system has generated an output signal $y(t)$ as a response to the given reference signal $r(t)$, where 
 - $r(t)$ is the setpoint (reference) signal.
