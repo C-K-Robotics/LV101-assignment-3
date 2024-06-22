@@ -2,22 +2,20 @@
 # Closed-Loop (Feedback) Control
 A closed-loop controller or feedback controller is a control loop which incorporates feedback, in contrast to an open-loop controller or non-feedback controller. A closed-loop controller uses feedback to control states or outputs of a dynamical system.
 
-![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/cd518726-2971-45b9-a0cb-664c88842258)
+![Alt text](assets\Closed_Loop_Block_Diagram.png)
 - Control action from the controller is dependent on the process (plant) output
 - Has a feedback loop which ensures the controller exerts a control action to give a process output the same as the "reference input" or "set point”
 # PID Control
 PID is a basic feedback controller we've been using a lot on the systems on our robot.
 The main concept for a [PID controller](https://en.wikipedia.org/wiki/Proportional–integral–derivative_controller) is to take a desired value and an actual value, and minimize the difference between the two, which is referred to as "error". When the error is near zero then you have succesfully reached the setpoint. PID does this with three components, the Proportional component, the Integral component, and the Derivative component.
 
-![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/38ec88d0-dfce-43ce-bbca-0b52c5a2d017)
+![Alt text](assets/PID.png)
 
 This is the underlying equation behind PID, and over the course of this week we will be teaching you what each component means
 
 $u(t) = K_p\cdot e(t) + K_i\cdot\int^t_0{e(\tau)d\tau}~+ K_d\cdot \frac{d}{dt}\left(e\left(t\right)\right)$
 
 *where e(t) is the error at time t, and u(t) is the output (often known as the input of the plant) of the PID controller. In our case, when working with motors, <ins>u(t) will always be the duty cycle demand (related to motor voltage) we give them</ins>*.
-
-![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/ecd2bab4-8eeb-440b-81d8-59ba0a7fd5c0)
 
 Effectively, we have a controller for a single action, so that aspect is tuned to use. We have individually tuned PIDs for the position and velocity of each motor, because each motor is in a unique position on the robot, with different load, friction, and other random qualities.
 
@@ -77,11 +75,12 @@ _Note that since we are working with a **discrete** error function we need to us
 # Exercise #1
 
 For this exercise, we'll be writing a PID controller to do a position control on an single-jointed arm plant. There is some [starter code](https://github.com/C-K-Robotics/LV101-assignment-3/blob/main/PID%20Controller.vi), but you'll be implementing the things you've learned above yourself. You have full freedom to change anything in the `PID Controller.vi` section. Of course, you can add indicators as you'd like to test out your values, and execute the `main.vi` to test out your controller.
-You can only modify the following VIs:
+You can modify the following VIs:
 - `PID Controller.vi` (No modification need. But feel free to add indicators if you want to check the values, or try the LabVIEW Probe Tool)
 - `Proportional Cal.vi`
 - `Integration Cal.vi`
 - `Derivative Cal.vi`
+- `main.vi` Only __PID gains__
 
 ### Integral Calculation
 
@@ -99,9 +98,31 @@ The way we do derivatives is also the same way we do derivative in calculus. A d
 
 Between each data point, you see the yellow slope line and the two blue component lines. for PID, we consider the dE at each point as the slope of the line leading to it. The dE at the green marked point would be the slope between the two marked points.
 
+# Exercise #2
+![Alt text](assets\2nd_Order_System_Response.png)
+
+In the exercise, the closed-loop system has generated an output signal $y(t)$ as a response to the given reference signal $r(t)$, where 
+- $r(t)$ is the setpoint (reference) signal.
+- $y(t)$ is the sensor value.
+
+Here, we introduce new concepts: Rise time, Overshoot. Sometimes, we use them as conditions for us to design controller.
+
+Please tune the PID controller you designed in the exercise #1 to make the closed-loop system generate an output signal that satisfies:
+- Overshoot must be lower than 30%.
+- Rise time must be less than 0.4 sec.
+
+### Rise Time
+As the graph shown above, the rise time stands for how much time the output signal spends to reach the reference for the first time.
+Specifically, if we normalize the output signal with our reference, the time it takes for the output siganl to reach from 10% to 90% of the given refernce.
+
+### Overshoot
+As the graph shown above, if we still normalize the output signal with our reference, Overshoot stands for how many percent it surpass the reference.
+
+For example, the maximum value of your closed-loop system response (aka the output signal) shows where the overshoot takes place. Let's say it's 125% of the refernce. Then, the overshoot is 25%.
+
 # Submission
-Eventually, you should get a plot in `main.vi` like this. Make sure you don't change any parameter of the controller, including PID gains, dt, Output range, Setpoint, etc.
-If you get the exact same plot, you're good to go and submit the assignment! (do a `git push`)
+Eventually, you should get a plot in `main.vi` like this. Make sure you don't change any parameter of the controller, except the __PID gains__.
 
-![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/af1a2a64-b69d-4059-978e-9c725e57aa59)
+If you get a similiar plot, you're good to go and submit the assignment! (do a `git push`)
 
+![Alt text](assets/solution_results.png)
