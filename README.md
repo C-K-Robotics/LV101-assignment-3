@@ -88,11 +88,11 @@ If you've taken calculus, you probably know about Riemann sums. Riemann sums are
 
 ![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/031d4c13-e7f8-43fe-9ce8-56ad5f9dfb6d)
 
-Imagine this is a graph of error. What we are showing here is a Right-Hand Riemann sum. This is how we recommend you implement integral calculations (as its pretty simple), but you can do it in other ways. You can experiment with this data set here: [Rieman Sum Simulator](https://www.desmos.com/calculator/kye17rgo1b)
+Imagine this is a graph of error. What we are showing here is a Right-Hand Riemann sum. This is how we recommend you implement integral calculations (as its pretty simple), but you can do it in other ways. You can experiment with this data set here: [Riemann Sum Simulator](https://www.desmos.com/calculator/kye17rgo1b)
 
 ### Derivative Calculations
 
-The way we do derivatives is also the same way we do derivative in calculus. A derivative is the slope between two points, where the dt is a limit to infinity. In our case, with code, the dt is simply as fast as we get data, which gets us pretty close. If you'd like to experiment with how the dt changes the results, I have another desmos sim here: [Derivatives Approximation](https://www.desmos.com/calculator/yhwf0jrps8). It uses the same data as the integral sim.
+The way we do derivatives is also the same way we do derivative in calculus. A derivative is the slope between two points, where the dt is a limit that approaches 0. In our case, with code, the dt is simply as fast as we get data, which gets us pretty close. If you'd like to experiment with how the dt changes the results, I have another desmos sim here: [Derivatives Approximation](https://www.desmos.com/calculator/yhwf0jrps8). It uses the same data as the integral sim.
 
 ![image](https://github.com/C-K-Robotics/LV101-assignment-3/assets/68310078/d9c38ef6-93e9-44b9-8c44-de20651e296f)
 
@@ -105,7 +105,7 @@ In the exercise, the closed-loop system has generated an output signal $y(t)$ as
 - $r(t)$ is the setpoint (reference) signal.
 - $y(t)$ is the sensor value.
 
-Here, we introduce new concepts: Rise time, Overshoot. Sometimes, we use them as conditions for us to design controller.
+Here, we introduce new concepts: Rise time, Overshoot. Sometimes, we use them as conditions for us to design controller. There's also other similar concepts that we won't cover here, such as Settling time, Damping coeff (2nd order system), Natural Frequency (2nd order system).
 
 Please tune the PID controller you designed in the exercise #1 to make the closed-loop system generate an output signal that satisfies:
 - Overshoot must be lower than 30%.
@@ -123,6 +123,6 @@ For example, the maximum value of your closed-loop system response (aka the outp
 # Submission
 Eventually, you should get a plot in `main.vi` like this. Make sure you don't change any parameter of the controller, except the __PID gains__.
 
-If you get a similiar plot, you're good to go and submit the assignment! (do a `git push`)
+If you get a similar plot, you're good to go and submit the assignment! (do a `git push`)
 
 ![Alt text](assets/solution_results.png)
