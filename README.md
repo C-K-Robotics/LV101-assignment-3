@@ -109,7 +109,7 @@ Here, we introduce new concepts: Rise time, Overshoot. Sometimes, we use them as
 
 Please tune the PID controller you designed in the exercise #1 to make the closed-loop system generate an output signal that satisfies:
 - Overshoot must be lower than 30%.
-- Rise time must be less than 0.4 sec.
+- Rise time must be less than 0.25 sec.
 
 ### Rise Time
 As the graph shown above, the rise time stands for how much time the output signal spends to reach the reference for the first time.
