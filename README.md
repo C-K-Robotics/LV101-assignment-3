@@ -27,7 +27,9 @@ The first section of the PID Algorithm is proportional term, P. The output here 
 
 **_An example scenario:_** We have a PID controller, which has a set of PID gains {0.3, 0, 0}, controlling motors on two sides of a differential drivetrain. Thus, it only has P. We want the position to be at 5 m, but we are currently at 3 m. In this situation, our error is 2 m. The equation now looks as follows.
 
-$u(t) = K_p\cdot e(t)\to u(t) = 0.3(2) = 0.6$
+$u(t) = K_p\cdot e(t)$
+
+$\Rarr u(t) = 0.3(2) = 0.6$
 
 As you can see, since $u(t)$ stands for our motor demands, ranging from [-1.0, 1.0], the $K_p$ gain has a unit of $\frac{demand}{meters}$. it's obvious to see that your controller gain has units that depends on what you $u(t)$ is, including $K_i$ and $K_d$.
 
@@ -46,7 +48,9 @@ Lets consider an example where the PID controller has a set of gains {0, 0.45, 0
 
 Lets imagine we are now at 3.4 seconds, and the total integral of everything prior is -1.65. Our equation now looks like this.
 
-$u(t) = K_i\cdot\int^t_0{e(\tau)d\tau} \to u(t) = 0.45(-1.65) = -0.7425$
+$u(t) = K_i\cdot\int^t_0{e(\tau)d\tau}$
+
+$\Rarr u(t) = 0.45(-1.65) = -0.7425$
 
 Now, due purely to integral, our output value is -0.7425.
 The integral is meant to be more persistent, as if the error is zero, integral will not shift, and the output from the integral component will be relatively stable. Often times, we tune integral term with both its gain and a maximum value (Integral Caps), so that we don't have an integral that compounds into infinity.
@@ -66,7 +70,9 @@ Here's the same error vs time graph from before, except this time we are at 2.6 
 
 Now, we are at 2.6 seconds, observe the green line. The slope of that green line is the derivative of the error at 2.6 seconds, which is 2.48. This is what the derivative section of the equation looks like now.
 
-$u(t) = K_d\cdot \frac{d}{dt}\left[e\left(t\right)\right] \to u(t) = 0.05(2.48) = 0.124$
+$u(t) = K_d\cdot \frac{d}{dt}\left[e\left(t\right)\right]$
+
+$\Rarr u(t) = 0.05(2.48) = 0.124$
 
 The derivative has set our output to be 0.124. Derivative is meant to dampen the $u(t)$ signal. If the error is moving toward zero, the derivative will add a component to make the error grow, and if the error is growing its component will make it move toward zero. It effectively dampens change.
 
@@ -105,11 +111,12 @@ In the exercise, the closed-loop system has generated an output signal $y(t)$ as
 - $r(t)$ is the setpoint (reference) signal.
 - $y(t)$ is the sensor value.
 
-Here, we introduce new concepts: Rise time, Overshoot. Sometimes, we use them as conditions for us to design controller. There's also other similar concepts that we won't cover here, such as Settling time, Damping coeff (2nd order system), Natural Frequency (2nd order system).
+Here, we introduce new concepts: Rise time, Overshoot, Settling time. Sometimes, we use them as conditions for us to design controller. There's also other similar concepts that we won't cover here, such as, Damping coeff (2nd order system), Natural Frequency (2nd order system).
 
 Please tune the PID controller you designed in the exercise #1 to make the closed-loop system generate an output signal that satisfies:
-- Overshoot must be lower than 30%.
-- Rise time must be less than 0.25 sec.
+1. Overshoot must be lower than $30\%$.
+2. Rise time must be less than $0.25$ $sec$.
+3. Settling time must be less than $1.0$ $sec$ with a tolerance of $\plusmn0.5$ $deg$
 
 ### Rise Time
 As the graph shown above, the rise time stands for how much time the output signal spends to reach the reference for the first time.
@@ -119,6 +126,9 @@ Specifically, if we normalize the output signal with our reference, the time it 
 As the graph shown above, if we still normalize the output signal with our reference, Overshoot stands for how many percent it surpass the reference.
 
 For example, the maximum value of your closed-loop system response (aka the output signal) shows where the overshoot takes place. Let's say it's 125% of the refernce. Then, the overshoot is 25%.
+
+### Settling Time
+As the graph shown above, Settling time stands for the time it takes for a system's response to reach and remain within a specified __error band__ after an input is applied.
 
 # Submission
 Eventually, you should get a plot in `main.vi` like this. Make sure you don't change any parameter of the controller, except the __PID gains__.
